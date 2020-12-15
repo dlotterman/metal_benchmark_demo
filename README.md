@@ -1,6 +1,6 @@
-#### Equinix Metal Benchmark Demo ####
+### Equinix Metal Benchmark Demo ###
 
-This horrendous code is enables the Equinxi Metal bechmark demo sometimes given by the Equinix Metal SA Team. It is make public for transperancy with customers and just to be generally available. The code is currently "brush clearing" quality.
+This horrendous code is enables the Equinxi Metal bechmark demo sometimes given by the Equinix Metal SA Team. It is public for transperancy's sake.
 
 
 The psuedo steps of the code are:
@@ -31,7 +31,7 @@ runcmd:
 
 Copy and paste the section from `#cloud-config` down into the user data field while provisioning a Metal instance, and the code should take care of the rest. It'll take about ~2 minutes from the instance booting after provisioning for the benchmarks to complete and the HTML to render correctly.
 
-##### `gate_open.sh` does the following: ######
+#### `gate_open.sh` does the following: #####
 
 * `set -e` cause you want it to barf if things go badly
 
@@ -47,7 +47,7 @@ Copy and paste the section from `#cloud-config` down into the user data field wh
 
 * Note that `gate_open.sh` makes sloppy use of an S3 like service that needs to be configured on the workstation system before hand. The bucket's content must be publically accesible via HTTP/s.
 
-##### `clout-config` does the following: #####
+#### `cloud-config` does the following: ####
 
 * Installs some packages 
   * Including `cockpit`, this is later referenced in the bootstrap dashbord mangled by `bench_spotter.sh`
@@ -57,7 +57,7 @@ Copy and paste the section from `#cloud-config` down into the user data field wh
 * Executes `bench_spotter.sh` locally
 
 
-##### `bench_spotter.sh` does the following: #####
+#### `bench_spotter.sh` does the following: ####
 
 * Curls some stuff from the metadata API
 
@@ -75,5 +75,6 @@ Copy and paste the section from `#cloud-config` down into the user data field wh
 
 * The dashboard also includes links to the Metal Console
 
+#### `gate_shut.sh` does the following: ####
 
-
+* Just wipes the bucket clean
