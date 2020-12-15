@@ -5,7 +5,7 @@ This horrendous code is enables the Equinxi Metal bechmark demo sometimes given 
 
 The psuedo steps of the code are:
 
-Run `gate_open.sh`:
+Run `gate_open.sh -c "Customer Name`:
 
 ```
 devvm:~/code/metal_benchmark_demo$ ./gate_open.sh -c "Dios Mio"

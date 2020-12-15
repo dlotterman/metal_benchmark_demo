@@ -27,8 +27,10 @@ set -e
 
 # Clean up from previous runs
 aws s3 --quiet --endpoint-url=https://s3.us-east-1.wasabisys.com rm --recursive s3://packetbootstrap/
+#aws s3 --endpoint-url=https://s3.us-east-1.wasabisys.com rm --recursive s3://packetbootstrap/
 
 aws s3 --quiet --endpoint-url=https://s3.us-east-1.wasabisys.com cp $METAL_TOKEN s3://packetbootstrap/$UUID/packet
+#aws s3 --endpoint-url=https://s3.us-east-1.wasabisys.com cp $METAL_TOKEN s3://packetbootstrap/$UUID/packet
 
 cp "$SCRIPTPATH"/bench_spotter.sh "$SCRATCH_DIR"/$UUID"_bench_spotter.sh"
 sed -i "s/EXAMPLE_CUSTOMER/$CUSTOMER/" "$SCRATCH_DIR"/$UUID"_bench_spotter.sh"
