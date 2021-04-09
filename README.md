@@ -1,9 +1,9 @@
 ### Equinix Metal Benchmark Demo ###
 
-This horrendous code is enables the Equinxi Metal bechmark demo sometimes given by the Equinix Metal SA Team. It is public for transperancy's sake.
+This horrendous code enables the Equinix Metal benchmark demo sometimes given by the Equinix Metal SA Team. It is public for transparency’s sake.
 
 
-The psuedo steps of the code are:
+The pseudo steps of the code are:
 
 Run `gate_open.sh -c "Customer Name`:
 
@@ -39,13 +39,13 @@ Copy and paste the section from `#cloud-config` down into the user data field wh
 
 * Wipes the S3 / Wasabi bucket clean
 
-* Uploads a Metal API token to the bucket, token should be read only. The token is used to query the API to get the cost for the instance in `bench_spotter.sh`
+* Uploads a Metal API token to the bucket, the token should be read-only. The token is used to query the API to get the cost for the instance in `bench_spotter.sh`
 
 * Template out some bash because yikes, this is how the bench_spotter picks up the "customer" name specified in the `-c` flag
 
-* Echo to shell some stuff to copy paste into user_data
+* Echo to shell some stuff to copy-paste into user_data
 
-* Note that `gate_open.sh` makes sloppy use of an S3 like service that needs to be configured on the workstation system before hand. The bucket's content must be publically accesible via HTTP/s.
+* Note that `gate_open.sh` makes sloppy use of an S3 like service that needs to be configured on the workstation system beforehand. The bucket's content must be publicly accessible via HTTP/s.
 
 #### `cloud-config` does the following: ####
 
@@ -65,7 +65,7 @@ Copy and paste the section from `#cloud-config` down into the user data field wh
 
 * Does a `sysbench`
 
-* Do some quickly system / config mangling of nginx, then run a simple `ab` against `localhost`
+* Do some quick system / config mangling of nginx, then run a simple `ab` against `localhost`
 
 * It then starts writing a bunch of metadata to different files, munging and merging them into the main HTML file
 
@@ -78,3 +78,6 @@ Copy and paste the section from `#cloud-config` down into the user data field wh
 #### `gate_shut.sh` does the following: ####
 
 * Just wipes the bucket clean
+
+
+
