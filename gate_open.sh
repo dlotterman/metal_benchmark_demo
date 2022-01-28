@@ -5,7 +5,7 @@
 
 UUID=$(uuidgen)
 CUSTOMER="Equinix Metal"
-METAL_TOKEN="/home/USER/.secrets/metal_benchmark_demo"
+METAL_TOKEN="/home/USER/.secrets/metal_benchmark_demo" # Just a file with the only string being the READ-ONLY Metal API key
 SCRATCH_DIR="/tmp"
 USER_S3_BUCKET_NAME="packetbootstrap" #Name of the bucket from your object provider
 USER_S3_S3_ENDPOINT="https://s3.us-east-1.wasabisys.com" # S3 endpoint, Wasabi left for example
