@@ -29,7 +29,7 @@ echo "Packet Instance Config: $INSTANCE_CONFIG" >> $META_OUTPUT
 
 curl -s https://metadata.packet.net/metadata | echo "Packet Instance Interfaces: ""$(jq .network.interfaces)" >> $META_OUTPUT
 
-INSTANCE_COST=$(curl -s -H "X-Auth-Token: $PACKET_API_TOKEN" https://api.packet.net/plans | jq '.plans[] | select (.name == '$INSTANCE_CONFIG') | {pricing} | .pricing.hour' )
+INSTANCE_COST=$(curl -s -H "X-Auth-Token: $PACKET_API_TOKEN" https://api.equinix.com/metal/v1/plans | jq '.plans[] | select (.name == '$INSTANCE_CONFIG') | {pricing} | .pricing.hour' )
 
 echo "Packet Instance Cost: $INSTANCE_COST" >> $META_OUTPUT
 
