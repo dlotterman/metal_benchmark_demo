@@ -5,11 +5,11 @@
 
 UUID=$(uuidgen)
 CUSTOMER="Equinix Metal"
-METAL_TOKEN="/home/dlotterman/.secrets/metal_benchmark_demo"
+METAL_TOKEN="/home/USER/.secrets/metal_benchmark_demo"
 SCRATCH_DIR="/tmp"
-USER_S3_BUCKET_NAME="packetbootstrap"
-USER_S3_S3_ENDPOINT="https://s3.us-east-1.wasabisys.com"
-USER_S3_URL="https://packetbootstrap.s3.wasabisys.com"
+USER_S3_BUCKET_NAME="packetbootstrap" #Name of the bucket from your object provider
+USER_S3_S3_ENDPOINT="https://s3.us-east-1.wasabisys.com" # S3 endpoint, Wasabi left for example
+USER_S3_URL="https://packetbootstrap.s3.wasabisys.com" # FQDN of bucket
 
 SCRIPT=`realpath $0`
 SCRIPTPATH=`dirname $SCRIPT`
@@ -26,23 +26,21 @@ while getopts c:a:f: flag
 
 S3_URL="$USER_S3_URL/$UUID"
 RAMDIR="/dev/shm/"
-echo "HAHA"
+
 # important to exit hard so you know something broke rather then stays silent
 set -e
 
 # Clean up from previous runs
-#aws s3 --quiet --endpoint-url=$S3_ENDPOINT rm --recursive s3://$USER_S3_BUCKET_NAME/
-echo $S3_ENDPOINT 
-echo $USER_S3_BUCKET_NAME
-aws s3  --endpoint-url=$USER_S3_S3_ENDPOINT rm --recursive s3://$USER_S3_BUCKET_NAME/
 
-aws s3  --endpoint-url=$USER_S3_S3_ENDPOINT cp $METAL_TOKEN s3://$USER_S3_BUCKET_NAME/$UUID/packet
+aws s3 --quiet --endpoint-url=$USER_S3_S3_ENDPOINT rm --recursive s3://$USER_S3_BUCKET_NAME/
+
+aws s3 --quiet --endpoint-url=$USER_S3_S3_ENDPOINT cp $METAL_TOKEN s3://$USER_S3_BUCKET_NAME/$UUID/packet
 
 
 cp "$SCRIPTPATH"/bench_spotter.sh "$SCRATCH_DIR"/$UUID"_bench_spotter.sh"
 sed -i "s/EXAMPLE_CUSTOMER/$CUSTOMER/" "$SCRATCH_DIR"/$UUID"_bench_spotter.sh"
 
-aws s3 --endpoint-url=$USER_S3_S3_ENDPOINT cp "$SCRATCH_DIR"/$UUID"_bench_spotter.sh" s3://$USER_S3_BUCKET_NAME/$UUID/bench_spotter.sh
+aws s3 --quiet --endpoint-url=$USER_S3_S3_ENDPOINT cp "$SCRATCH_DIR"/$UUID"_bench_spotter.sh" s3://$USER_S3_BUCKET_NAME/$UUID/bench_spotter.sh
 
 
 echo "UUID: $UUID"
